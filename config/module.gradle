@@ -1,0 +1,60 @@
+// findbugs/lint输出报告的目录
+def reportsPath = file("${project.rootDir}/static_reports/" + project.getName())
+
+// android 配置
+def androidConfigure = {
+
+    android {
+        compileSdkVersion 30
+        buildToolsVersion "30.0.3"
+
+        defaultConfig {
+            minSdkVersion 19
+            targetSdkVersion 30
+            versionCode 1
+            versionName "1.0"
+
+            testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        }
+
+        buildTypes {
+            release {
+                minifyEnabled false
+                proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            }
+        }
+
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+
+        kotlinOptions {
+            jvmTarget = '1.8'
+        }
+
+        lintOptions {
+            abortOnError false
+            lintConfig file("${project.rootDir}/config/lint.xml")
+            xmlOutput file("${reportsPath}/lint/xml/" + project.getName() + "_lint.xml")
+            htmlOutput file("${reportsPath}lint//html/" + project.getName() + "_lint.html")
+        }
+
+    }
+
+}
+
+def applyPlugin = {
+    if (getName() == 'app') {
+        apply plugin: 'com.android.application'
+        apply plugin: 'kotlin-android'
+    } else {
+        apply plugin: 'com.android.library'
+        apply plugin: 'kotlin-android'
+    }
+}
+
+ext.projectConfigure = {
+    applyPlugin()
+    androidConfigure()
+}

@@ -1,0 +1,21 @@
+projectConfigure()
+
+android {
+    defaultConfig {
+        applicationId "com.chiclaim.android.architecture"
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+
+    implementation rootProject.ext.dependencies.kotlinStdlib
+    implementation rootProject.ext.dependencies.coreKtx
+    implementation rootProject.ext.dependencies.appcompat
+    implementation rootProject.ext.dependencies.googleMaterial
+    implementation rootProject.ext.dependencies.constraintlayout
+    testImplementation rootProject.ext.dependencies.junit
+    androidTestImplementation rootProject.ext.dependencies.extJunit
+    androidTestImplementation rootProject.ext.dependencies.espressoCore
+}
