@@ -10,11 +10,19 @@ android {
 
 dependencies {
 
+    // androidx
     implementation rootProject.ext.dependencies.kotlinStdlib
     implementation rootProject.ext.dependencies.coreKtx
     implementation rootProject.ext.dependencies.appcompat
     implementation rootProject.ext.dependencies.googleMaterial
     implementation rootProject.ext.dependencies.constraintlayout
+
+    // network
+    implementation rootProject.ext.dependencies.retrofit
+    implementation rootProject.ext.dependencies.retrofitGson
+    implementation rootProject.ext.dependencies.okhttpLogging
+
+    // test
     testImplementation rootProject.ext.dependencies.junit
     androidTestImplementation rootProject.ext.dependencies.extJunit
     androidTestImplementation rootProject.ext.dependencies.espressoCore
